@@ -5,6 +5,7 @@ and demonstrate my proficiency in developing full-stack web applications.
 
 ## Features
 
+- Single Page Application (SPA): Provides a smooth and interactive user experience by dynamically updating the content without requiring full page reloads.
 - User Authentication: Users can sign up, log in, and manage their account.They can edit their details and change their password.
 - Product Catalog: Browse various products with detailed information.
 - Shopping Cart:
@@ -17,11 +18,11 @@ and demonstrate my proficiency in developing full-stack web applications.
  	- Manage products (Add, Edit and Delete).
   	- View a List of Users and their Information.(Only Deletion of Users is available).
   	- Change admin password w.r.t admin Pin.
-- Single Page Application (SPA): Provides a smooth and interactive user experience by dynamically updating the content without requiring full page reloads.
+- REST APIs: Backend built using RESTful APIs for handling data retrieval, updates, and other operations.
 
 ## Technologies Used
 
-- Frontend: React, React Router, Redux, HTML, CSS, JavaScript.
+- Frontend: React, Redux, HTML, CSS, Bootstrap, JavaScript.
 - Backend: Node.js, Express.js, MongoDB.
 
 ## Installation
