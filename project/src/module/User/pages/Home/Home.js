@@ -25,7 +25,6 @@ const Home = () => {
             }
             else{
                 let result = await Productservice.getall();
-                console.log(result.info);
                 setProduct(result.info);
             }
 

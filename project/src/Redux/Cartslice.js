@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { api } from "../constants/serverapi";
 
@@ -28,11 +28,11 @@ let removeallitems = createAsyncThunk("removeallitemsincart",async(_,{getState})
     return result.data;
 })
 
-let removeoneitem = createAsyncThunk("removeoneitemfromcart",async(itemid,{getState})=>{
+let removeoneitem = createAsyncThunk("removeoneitemfromcart",async(unqid,{getState})=>{
 
     let userid = getState().Userauthslice;
 
-    let result = await axios.delete(`${api}/cart/${userid}/${itemid}`);
+    let result = await axios.delete(`${api}/cart/${userid}/${unqid}`);
     return result.data;
 })
 

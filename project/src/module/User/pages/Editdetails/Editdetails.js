@@ -120,7 +120,7 @@ const Editdetails = () => {
                             </small>
                         </div>
                         <div className='form-group'>
-                            <lable>Password</lable>
+                            <label>Password</label>
                             <div className='btn-group btn-block'>
                                 <input type={revealed ? "text" : "password"} name="password" className={"form-control " + (errors.password && touched.password ? "is-invalid" : "")} onChange={handleChange}></input>
                                 <button type="button" onClick={revealpass} className={"btn " + (revealed ? "btn-danger" : "btn-primary")}>{revealed ? "Hide" : "Show"}</button>

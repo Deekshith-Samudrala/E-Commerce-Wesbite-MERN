@@ -20,8 +20,8 @@ app.delete("/:userid",async(req,res)=>{
     res.send({success : true});
 })
 
-app.delete("/:userid/:itemid",async (req,res)=>{
-    let result = await cart.findOneAndUpdate({userid : req.params.userid},{ $pull : { Cart : {_id : req.params.itemid}}});
+app.delete("/:userid/:unqid",async (req,res)=>{
+    let result = await cart.findOneAndUpdate({userid : req.params.userid},{ $pull : { Cart : {unqid : req.params.unqid}}});
     res.send({success : true,info : result, delid : req.params.itemid});
 })
 

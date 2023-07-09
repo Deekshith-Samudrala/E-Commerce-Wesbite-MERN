@@ -10,5 +10,6 @@ app.use("/api/product",require("../controllers/productController"));
 app.use("/api/admin/login",require("../controllers/admincontroller"));
 app.use("/api/coupon",require("../controllers/couponControlller"));
 app.use("/api/cart",require("../controllers/cartController"));
+app.use("/api/payment",require("../controllers/paymentcontroller"));
 
 module.exports = app;   

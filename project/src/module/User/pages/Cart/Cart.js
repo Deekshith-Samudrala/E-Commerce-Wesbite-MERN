@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
-import { removeallitems,removeoneitem } from '../../../../Redux/Cartslice';
+import { removeallitems,removeoneitem,cartadd } from '../../../../Redux/Cartslice';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
 
     let disp = useDispatch();
     let navigate = useNavigate();
+
     let cartitems = useSelector(state=>state.Cartslice);
 
-    let shipping = 0;
+    let cartitemsfreq = {};
+    let unqcartitems = [];
+
+    cartitems.forEach((item) => {
+        if(item.title in cartitemsfreq) {
+          cartitemsfreq[item.title]++;
+        }else {
+          cartitemsfreq[item.title] = 1;
+          unqcartitems.push(item);
+        }
+    });
+
+    let shipping = 0;   
     let totalprice = 0;
     let totaldiscount = 0;
 
@@ -21,11 +34,24 @@ const Cart = () => {
         else{
             navigate(`/login`);
         }
-    },[])
+    },[cartitems])
 
     let clearcartfunc = ()=>{
-        console.log("hello");
         disp(removeallitems());
+    }
+
+    let removeproduct = async (item)=>{
+        let currquantity = cartitemsfreq[item.title];
+        if(currquantity > 1){
+            disp(removeoneitem(item.unqid));
+            cartitemsfreq[item.title] -= 1;
+            window.location.reload();
+        }
+        else{
+            disp(removeoneitem(item.unqid));    
+            delete cartitemsfreq[item.title];   
+            window.location.reload();   
+        }
     }
 
     return (
@@ -44,16 +70,20 @@ const Cart = () => {
                     <div className='row my-4 border-right pr-5 ml-5'>
                         
                         {
-                            cartitems.map((item,index)=>{
-                                totalprice += item.price;
+                            unqcartitems.map((item,index)=>{
+
+                                let quantity = cartitemsfreq[item.title];
+
+                                totalprice += item.price * quantity;
+
                                 if(totalprice > 499){
-                                    shipping = 0
+                                    shipping = 0;
                                 }
                                 else{
                                     shipping = 99;
-                                }
+                                }   
+                                totaldiscount += item.price*item.discount/100*quantity;
                                 let discountedprice = item.price - (item.price*item.discount/100);
-                                totaldiscount += item.price*item.discount/100
 
                                 return(
                                     <React.Fragment key={index}>
@@ -65,14 +95,14 @@ const Cart = () => {
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='my-3 py-3'>
-                                                            <h4 className='mb-3'><b>{item.title}</b></h4>
+                                                            <h4 className='mb-3'><b>{item.title} x {quantity}</b></h4>
                                                             <h6 className='mb-3'><i>{item.details}</i>  </h6>
                                                             <div style={{display : "flex"}}>
                                                                 <h5 className='mr-2'>Price : &#8377;</h5>
                                                                 <h6 className='mr-2' style={{paddingTop : "1px"}}><del>{item.price.toFixed(2)}</del></h6>
                                                                 <h5 className='mb-4'>{discountedprice.toFixed(2)}</h5>
                                                             </div>
-                                                            <button className='btn btn-sm btn-danger' onClick={()=>disp(removeoneitem(item._id))} >Remove</button>
+                                                            <button className='btn btn-sm btn-danger' onClick={()=>removeproduct(item)} >Remove</button>
                                                         </div>
                                                     </div>
                                                 </div>

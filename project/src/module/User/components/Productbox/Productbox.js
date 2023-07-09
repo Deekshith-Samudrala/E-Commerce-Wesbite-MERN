@@ -3,6 +3,7 @@ import Productaddmodal from '../../../../constants/Productaddmodal';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartadd } from '../../../../Redux/Cartslice';
 import { useNavigate } from 'react-router-dom';
+import Randomstring from 'randomstring';
 
 const Productbox = ({data,location,dispcartalert}) => {
 
@@ -35,6 +36,9 @@ const Productbox = ({data,location,dispcartalert}) => {
                 dispcartalert();
             }
             else{
+                let itemunqid = Randomstring.generate();
+                data.unqid = itemunqid;
+                console.log(data);
                 disp(cartadd(data));
                 setProductname(name);
             }
