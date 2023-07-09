@@ -1,7 +1,6 @@
 # E-Commerce-Wesbite-MERN
 
-This is an e-commerce website built as a personal project using the MERN stack (MongoDB, Express.js, React.js, and Node.js). The purpose of this project is to showcase my skills as a developer  
-and demonstrate my proficiency in developing full-stack web applications.
+This is an e-commerce website built as a personal project using the MERN stack (MongoDB, Express.js, React.js, and Node.js). The purpose of this project is to showcase my skills as a developer and demonstrate my proficiency in developing full-stack web applications.
 
 ## Features
 
