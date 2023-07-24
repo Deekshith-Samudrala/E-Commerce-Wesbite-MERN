@@ -1,18 +1,33 @@
 const app = require("express").Router();
 const Razorpay = require("razorpay");
+const user = require("../models/user");
 
-const instance = new Razorpay({ key_id: 'rzp_test_7OB2HvgWNjQdKa', key_secret: 'KzJbaBB6TpBz5u8CjbDlTdUT' });
+const {RZP_ID,RZP_SECRET} = process.env;
 
-app.post("/",async(req,res)=>{
-    instance.orders.create({
-        amount: 50000,
+const instance = new Razorpay({ key_id: RZP_ID, key_secret: RZP_SECRET});
+
+app.post("/createOrder",async(req,res)=>{
+    var options = {
+        amount: req.body.totalprice * 100, // amount is divided by 100 
         currency: "INR",
-        receipt: "receipt#1",
-        notes: {
-          key1: "value3",
-          key2: "value2"
+        receipt: "ditusamudrala@gmail.com",
+        notes : req.body.items,
+    };
+    instance.orders.create(options, (err,order)=>{
+        if(!err){
+            console.log("success");
+            let result = await user.create({id : order._id,items : req.body.items});
+            res.send({
+                success : true, 
+                info : order})
         }
-      })
+        else{
+            console.log("Failed");
+            res.send({
+                success : false , 
+                info : order })
+        }
+    })
 })
 
 

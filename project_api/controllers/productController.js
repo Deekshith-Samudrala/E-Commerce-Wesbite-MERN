@@ -29,7 +29,7 @@ app.post("/",async (req,res)=>{ // insert product data
 
     formdata.image = filename;
 
-    file.mv(path.resolve()+"/assets/Uploads/"+filename, async (err)=>{
+    file.mv(path.resolve()+"/build/assets/Uploads/"+filename, async (err)=>{
 
         let result = await product.create(formdata);
         res.send({success : true, info : result})

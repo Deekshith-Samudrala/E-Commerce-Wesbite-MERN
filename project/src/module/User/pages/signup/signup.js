@@ -99,7 +99,7 @@ const Signup = () => {
   
     return (
     <>
-        <div className='Toppagename containe-fluid my-3'>
+        <div className='Toppagename container-fluid my-3'>
             <h4 className="mb-5">User Registration</h4>
         </div>
         <div className='container' style={{minHeigh : "700px"}}>

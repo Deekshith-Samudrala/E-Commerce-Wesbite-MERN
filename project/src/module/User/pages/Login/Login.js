@@ -15,6 +15,7 @@ const Login = () => {
     let [err,setErr] = useState(false);
     let [errmsg,setErrmsg] = useState();
     let [signupbtn,setSignupbtn] = useState(false);
+    let [forgotpassbtn,setForgotpassbtn] = useState(false);
 
     useEffect(()=>{
         if(localStorage.getItem("token")){
@@ -60,11 +61,13 @@ const Login = () => {
                     setSignupbtn(false);
                     setErr(true);
                     setErrmsg("You have entered the wrong password !");
+                    setForgotpassbtn(true);
                 }
                 if(result.errType == 2){
                     setSignupbtn(true);
                     setErr(true);
                     setErrmsg("This E-Mail id is not registered. Please create an account");
+                    setForgotpassbtn(false);
                 }
             }
         },
@@ -102,6 +105,11 @@ const Login = () => {
                         {
                             signupbtn ? (
                                 <NavLink className='btn btn-info mx-4' to="/signup">Click here to create new account</NavLink>
+                            ) : ""
+                        }
+                        {
+                            forgotpassbtn ? (
+                                <NavLink className='btn btn-secondary mx-4' to="/">Forgot Password</NavLink>
                             ) : ""
                         }
                         { err ? (<div className='alert alert-danger my-4'>

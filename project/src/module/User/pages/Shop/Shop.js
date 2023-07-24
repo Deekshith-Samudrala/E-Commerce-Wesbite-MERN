@@ -3,7 +3,6 @@ import Categoryservice from "../../../../services/Categoryservice";
 import { NavLink,useParams } from 'react-router-dom';
 import Productservice from '../../../../services/Productservice';
 import Productbox from '../../components/Productbox/Productbox';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const Shop = () => {
 

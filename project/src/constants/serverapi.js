@@ -1,3 +1,3 @@
-const api = "http://localhost:3001/api";
+const api = "https://lazy-pink-whale-cap.cyclic.app/api";
 
 export {api}; 

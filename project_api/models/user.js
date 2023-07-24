@@ -9,7 +9,8 @@ const userschema = mongoose.Schema({
     gender : String,
     city : String,  
     contact : String,
-    state : String
+    state : String,
+    orders : [{ type: Object }]
 }) 
 
 module.exports = mongoose.model("user",userschema);

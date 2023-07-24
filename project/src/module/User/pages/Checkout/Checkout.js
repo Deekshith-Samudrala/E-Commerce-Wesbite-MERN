@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
-import {add,remove,removeall} from "../../../../Redux/Cartslice"
 import { NavLink, useNavigate } from 'react-router-dom';
 import Profileservice from '../../../../services/Profileservice';
 import { useFormik } from 'formik';
 import * as yup from "yup";
 import Couponservice from '../../../../services/Couponservice';
+import Paymentservice from '../../../../services/Paymentservice';
 
 const Checkout = () => {
 
@@ -84,6 +84,20 @@ const Checkout = () => {
 
     let removecoupon  = ()=>{
         setCoupondiscount(0);
+    }
+
+    let placeorder = async ()=>{
+        let orderdetails = {
+            totalprice : totalprice - totaldiscount + shipping,
+            items : cartitems
+        }
+        let result = await Paymentservice.placeorder(orderdetails);
+        if(result.success){
+            console.log("payment successfull");
+        }
+        else{
+            console.log("payment Failed")
+        }
     }
 
   return (
@@ -236,7 +250,7 @@ const Checkout = () => {
                         ) : ""
                     }
                     <div className='border-top'>
-                        <button className='btn btn-primary mr-4 mt-4'><h4 className='text-light'>Place Order</h4></button>
+                        <button className='btn btn-primary mr-4 mt-4' onClick={placeorder}><h4 className='text-light'>Place Order</h4></button>
                         <NavLink to="/cart" className='btn btn-dark mt-4'><h4 className='text-light'>Go back to Cart</h4></NavLink>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartadd } from '../../../../Redux/Cartslice';
 import { useNavigate } from 'react-router-dom';
 import Randomstring from 'randomstring';
+import { assetspath } from '../../../../constants/imagefilepath';
 
 const Productbox = ({data,location,dispcartalert}) => {
 
@@ -60,7 +61,7 @@ const Productbox = ({data,location,dispcartalert}) => {
     <>
         <div className="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
             <div className="featured__item">
-                <div className={`${productloc}` + " featured__item__pic set-bg"} style={{backgroundImage : `url(http://localhost:3001/Uploads/${data.image})`}}>
+                <div className={`${productloc}` + " featured__item__pic set-bg"} style={{backgroundImage : `url(${assetspath}/Uploads/${data.image})`}}>
                     <ul className="featured__item__pic__hover">
                         <li><button className='btn btn-dark' onClick={()=>modalname(data.title)} data-toggle={ cartitems.length < 16 ? "modal" : ""} data-target="#productmodal"><i className="fa fa-shopping-cart"></i></button></li>
                     </ul>

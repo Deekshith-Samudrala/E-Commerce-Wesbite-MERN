@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux';
 import { removeallitems,removeoneitem,cartadd } from '../../../../Redux/Cartslice';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { assetspath } from '../../../../constants/imagefilepath';
 
 const Cart = () => {
 
@@ -91,7 +92,7 @@ const Cart = () => {
                                             <div className='col-md-12 border-bottom'>
                                                 <div className='row'>
                                                     <div className='col-md-6'>
-                                                    <img className='py-3' src={`http://localhost:3001/uploads/${item.image}`} style={{borderRadius : "40px",height : "250px",width : "370px",backgroundSize : "contain"}}></img>
+                                                    <img className='py-3' src={`${assetspath}/Uploads/${item.image}`} style={{borderRadius : "40px",height : "250px",width : "370px",backgroundSize : "contain"}}></img>
                                                     </div>
                                                     <div className='col-md-6'>
                                                         <div className='my-3 py-3'>
